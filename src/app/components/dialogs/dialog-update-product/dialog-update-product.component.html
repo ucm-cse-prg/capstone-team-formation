@@ -1,0 +1,53 @@
+<app-dialog [dialogTitle]="title" [dialogButtons]="buttons">
+    <div class="flex-content">
+        <div class="image-container">
+            @if (uploadedImage) {
+                <img [src]="uploadedImage" alt="Product Image" class="product-image" />
+            } @else {
+                <img [src]="product.image || 'https://material.angular.io/assets/img/examples/shiba2.jpg'" alt="Product Image" class="product-image" />
+            }
+
+            <button mat-stroked-button class="create-product-button" >
+                <mat-icon>cloud_upload</mat-icon>
+                <span>Upload Image</span>
+            </button>
+            <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+            
+        </div>
+        <form [formGroup]="form">
+            <div mat-dialog-content class="content">
+                <div class="row">
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput type="text" placeholder="Product Name" formControlName="name">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Product Description</mat-label>
+                        <textarea matInput type="text" placeholder="Briefly describe this Product"
+                            formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Product Price</mat-label>
+                        <input matInput type="number" placeholder="Product Price" formControlName="price">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Category Name</mat-label>
+                        <input matInput type="text" placeholder="Category Name" formControlName="categoryName">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Category Description</mat-label>
+                        <input matInput type="text" placeholder="Category Description" formControlName="categoryDescription">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</app-dialog>

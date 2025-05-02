@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+.product-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2%; // Adjust the gap between items as needed
+    margin: 2%;
+  
+    @media(min-width: 768px) {  // adjust breakpoint as needed
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+}
+
+.create-product-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    width: 4rem;
+    height: 4rem;
+
+    @include mat.fab-overrides((
+        container-color: var(--mat-sys-primary),
+    ));
+}
+
+.product-card{
+    margin: 2%;
+}

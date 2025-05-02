@@ -1,0 +1,55 @@
+@use '@angular/material' as mat;
+
+.product-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--mat-sys-color-surface);
+    box-shadow: var(--mat-shadow-elevation, 0 2px 4px rgba(0, 0, 0, 0.15));
+    border: 1px solid var(--mat-sys-color-outline);
+    position: relative;
+    padding: 0;
+}
+
+.product-card mat-card-header {
+    padding: 16px;
+}
+
+.product-card mat-card-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--mat-sys-color-on-surface);
+}
+
+.product-card mat-card-subtitle {
+    font-size: 1rem;
+    color: var(--mat-sys-color-on-surface-variant);
+}
+
+.product-card-menu-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.product-picture,
+img[mat-card-image] {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.product-category-chip {
+
+    @include mat.chips-overrides((
+        elevated-disabled-container-color: var(--mat-sys-secondary),
+        disabled-label-text-color: var(--mat-sys-on-primary),
+        outline-width: 0,
+        // background: var(--mat-sys-primary, #DAA900),
+
+    ));
+}
+
+.product-card-content {
+    min-height: 2em;
+}

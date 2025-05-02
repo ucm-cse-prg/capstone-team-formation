@@ -1,0 +1,10 @@
+<app-dialog [dialogTitle]="product.name" [dialogButtons]="buttons">
+  <div class="product-details">
+    <div class="product-description">{{ product.description }}</div>
+    <div class="product-price">{{ product.price | currency }}</div>
+    <img mat-card-image [src]="product.image" alt="Photo of a Shiba Inu">
+    <mat-chip class="product-category-chip" [matTooltip]="product.category.description || 'No description available'" selected disabled>
+      {{ product.category.name }}
+    </mat-chip>
+  </div>
+</app-dialog>

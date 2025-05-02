@@ -1,0 +1,11 @@
+// @use '@shared/components/dialog/dialog.component.scss';
+
+.flex-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.product-image {
+  width: 100%;
+}

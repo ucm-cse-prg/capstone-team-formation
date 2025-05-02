@@ -1,0 +1,41 @@
+// @use '@shared/components/dialog/dialog.component.scss';
+@use '@angular/material' as mat;
+
+// Custom styles for view product dialog
+:host {
+    display: block;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #2e7d32; // a shade of green
+    margin-bottom: 15px;
+}
+
+img[mat-card-image] {
+    max-width: 100%;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.product-category-chip {
+
+    @include mat.chips-overrides((
+        elevated-disabled-container-color: var(--mat-sys-secondary),
+        disabled-label-text-color: var(--mat-sys-on-primary),
+        outline-width: 0,
+    ));
+}

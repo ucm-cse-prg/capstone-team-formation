@@ -1,0 +1,70 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use './theme-colors.scss' as theme;
+
+$theme: mat.define-theme((color: (theme-type: light, // or dark
+                primary: theme.$primary-palette,
+                tertiary: theme.$tertiary-palette,
+            )));
+
+html {
+    @include mat.theme((color: (theme-type: light,
+                primary: theme.$primary-palette,
+                tertiary: theme.$tertiary-palette,
+            ),
+            typography: "Sans-serif",
+            density: 0,
+        ));
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+// $primary-10: mat.get-theme-color($theme, primary, 30);
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+    .primary {
+        @include mat.button-overrides((filled-container-color: var(--mat-sys-on-primary-container),
+                filled-label-text-color: var(--mat-sys-on-primary),
+            ));
+    }
+
+    .basic {
+        @include mat.button-overrides((filled-container-color: var(--mat-sys-outline),
+                filled-label-text-color: var(--mat-sys-on-primary),
+            ));
+    }
+
+    .accent {
+        @include mat.button-overrides((filled-container-color: var(--mat-sys-primary),
+                filled-label-text-color: var(--mat-sys-on-primary),
+            ));
+    }
+
+    .warn {
+        @include mat.button-overrides((
+            filled-container-color: var(--mat-sys-error),
+            filled-label-text-color: var(--mat-sys-error-container),
+        ));
+    }
+
+    .snackbar-success {
+        @include mat.snack-bar-overrides((
+            container-color: var(--mat-sys-primary),
+            supporting-text-color: var(--mat-sys-on-primary),
+        ));
+    }
+
+    .snackbar-error {
+        @include mat.snack-bar-overrides((
+            container-color: var(--mat-sys-error),
+            supporting-text-color: var(--mat-sys-error-container),
+            button-color: var(--mat-sys-error-container),
+        ));
+    }
+}

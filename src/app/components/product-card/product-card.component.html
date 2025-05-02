@@ -1,0 +1,29 @@
+<mat-card class="product-card" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{ product().name }}</mat-card-title>
+        <mat-card-subtitle>
+            Price: {{ product().price | currency }}
+        </mat-card-subtitle>
+        <button class="product-card-menu-button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="viewProduct()">
+                <mat-icon>visibility</mat-icon>
+                <span>View Product</span>
+            </button>
+            <button mat-menu-item (click)="updateProduct()">
+                <mat-icon>edit</mat-icon>
+                <span>Edit Product</span>
+            </button>
+            <button mat-menu-item (click)="deleteProduct()">
+                <mat-icon>delete</mat-icon>
+                <span>Delete Procut</span>
+            </button>
+        </mat-menu>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-actions>
+        <mat-chip class="product-category-chip" [matTooltip]="product().category.description || 'No description available'" selected disabled>{{ product().category.name }}</mat-chip>
+    </mat-card-actions>
+</mat-card>

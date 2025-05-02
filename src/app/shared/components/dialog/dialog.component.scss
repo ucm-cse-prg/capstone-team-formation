@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+.title {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.content {
+    min-width: 20em;
+}
+
+.form-field, .form-select, .chip-list {
+    width: 100%;
+    // margin-bottom: 20px;
+}
+
+.action {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.button {
+    width: 40%;
+}

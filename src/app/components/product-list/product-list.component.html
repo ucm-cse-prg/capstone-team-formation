@@ -1,0 +1,15 @@
+<div class="product-list-container">
+    @for (product of products; track product.id) {
+    <div class="product-card">
+        <app-product-card
+            [product]="product"
+            (productUpdated)="updateProduct($event)"
+            (productDeleted)="deleteProduct($event)">
+        </app-product-card>
+    </div>
+    }
+</div>
+
+<button mat-fab class="create-product-button" (click)="createProduct()">
+    <mat-icon>add</mat-icon>
+</button>
