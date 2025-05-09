@@ -13,7 +13,6 @@ export class TeamFormationComponent {
   teams: Team[] = []; // Array to hold the teams
 
 
-
   // Takes one argument (the form data from the child component and emits an event)
   // logs data and will later be used to trigger team generation
   handleConfig(config: { teamSize: number; preferenceWeight?: number; labLockProject?: number }) {
@@ -35,14 +34,30 @@ export class TeamFormationComponent {
         id: 1,
         projectId: config.labLockProject || 1,
         students: [
-          { id: 1, name: 'Alice', skills: ['Python'], preferences: [1, 2], locked: false },
-          { id: 2, name: 'Bob', skills: ['C++'], preferences: [2, 1], locked: false }
+          {id: 1, name: 'Alice', skills: ['Python'], preferences: [1, 2], locked: false},
+          {id: 1, name: 'Jeff', skills: ['Python'], preferences: [1, 2, 3], locked: false},
+          {id: 1, name: 'John', skills: ['TensorFlow'], preferences: [1, 2], locked: false},
+          {id: 1, name: 'Rebecca', skills: ['JavaScript', 'HTML', 'CSS'], preferences: [3], locked: false},
+          {id: 1, name: 'Steve', skills: ['Python'], preferences: [1, 2], locked: false},
+          {id: 2, name: 'Bob', skills: ['C++'], preferences: [2, 1], locked: false}
         ],
         locked: false
       },
       {
         id: 2,
         projectId: 2,
+        students: [],
+        locked: false
+      },
+      {
+        id: 3,
+        projectId: 3,
+        students: [],
+        locked: false
+      },
+      {
+        id: 4,
+        projectId: 4,
         students: [],
         locked: false
       }
