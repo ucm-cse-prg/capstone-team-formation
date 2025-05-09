@@ -25,6 +25,7 @@ import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@
 export class TeamCardComponent {
   // Input property to receive the list of teams from the parent component
   @Input() team!: Team;
+  @Input() allTeams!: Team[]; // ended up needing to build connected list IDs
 
     // Method to handle the drop event when a student is dragged and dropped
     onDrop(event: CdkDragDrop<any[]>) {
