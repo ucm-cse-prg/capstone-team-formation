@@ -21,7 +21,18 @@
           class="student-card"
           [class.locked]="student.locked"
         >
-          {{ student.name }} — {{ student.skills.join(', ') }}
+          <div class="student-info">
+            <strong>{{ student.name }}</strong> — {{ student.skills.join(', ') }}
+            <div class="student-preference">
+              Project Preference:
+              {{
+                getPreferenceRank(student) !== null
+                  ? (getPreferenceRank(student)! + 1) + getOrdinalSuffix(getPreferenceRank(student)! + 1) + ' choice'
+                  : 'Not ranked'
+              }}
+            </div>
+          </div>
+
           <mat-icon *ngIf="student.locked">lock</mat-icon>
         </div>
       }
