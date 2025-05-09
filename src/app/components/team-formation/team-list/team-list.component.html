@@ -1,5 +1,9 @@
 <div class="team-list" cdkDropListGroup>
   @for (team of teams; track team.id) {
-    <app-team-card [team]="team" [allTeams]="teams" />
+    <app-team-card
+      [team]="team"
+      [allTeams]="teams"
+      [project]="getProjectById(team.projectId)"
+    />
   }
 </div>
