@@ -26,5 +26,16 @@
         </div>
       }
     </div>
+    <div class="metrics">
+      <div class="metric">
+        <strong>Skill Match:</strong> {{ skillMatch }}%
+        <mat-progress-bar [value]="skillMatch" color="primary" mode="determinate"></mat-progress-bar>
+      </div>
+      <div class="metric">
+        <strong>Preference Score:</strong> {{ preferenceScore }}%
+        <mat-progress-bar [value]="preferenceScore" color="accent" mode="determinate"></mat-progress-bar>
+      </div>
+    </div>
+
   </mat-card-content>
 </mat-card>
