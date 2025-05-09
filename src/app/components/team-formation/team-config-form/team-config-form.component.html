@@ -1,1 +1,33 @@
-<p>team-config-form works!</p>
+<form [formGroup]="configForm" (ngSubmit)="onSubmit()" class="config-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Team Size</mat-label>
+    <input matInput type="number" formControlName="teamSize"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Preference Weight (optional)</mat-label>
+    <input matInput type="number" formControlName="preferenceWeight"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Lock Project to Lab</mat-label>
+    <mat-select formControlName="labLockProject">
+      <mat-option [value]="null">None</mat-option>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Lock Project to Lab</mat-label>
+        <mat-select formControlName="labLockProject">
+          <mat-option [value]="null">None</mat-option>
+          @for (proj of projectOptions; track proj.id) {
+            <mat-option [value]="proj.id">
+              {{ proj.title }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!configForm.valid">
+    Generate Teams
+  </button>
+</form>
