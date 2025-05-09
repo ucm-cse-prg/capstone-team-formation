@@ -1,1 +1,15 @@
-<p>team-card works!</p>
+<mat-card class="teams-card">
+  <mat-card-header>
+    <mat-card-title>Team {{ team.id }}</mat-card-title>
+    <mat-card-subtitle>Project ID: {{ team.projectId }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p><strong>Students:</strong></p>
+    <ul>
+      @for (student of team.students; track student.id) {
+        <li>{{ student.name }} - Skills: {{ student.skills.join(', ') }}</li>
+      }
+    </ul>
+  </mat-card-content>
+</mat-card>
