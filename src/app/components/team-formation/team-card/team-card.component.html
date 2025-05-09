@@ -1,16 +1,28 @@
 <mat-card class="teams-card">
+
   <mat-card-header>
     <mat-card-title>Team {{ team.id }}</mat-card-title>
     <mat-card-subtitle>Project ID: {{ team.projectId }}</mat-card-subtitle>
+
+    <mat-slide-toggle
+      (change)="toggleTeamLock()"
+      [checked]="team.locked"
+      class="team-lock-toggle"
+      color="warn"
+    >
+      Lock Team
+    </mat-slide-toggle>
   </mat-card-header>
 
   <mat-card-content>
     <p><strong>Students:</strong></p>
     <p>Drag and drop students to form teams.</p>
+
     <div
       cdkDropList
       [cdkDropListData]="team.students"
       [cdkDropListConnectedTo]="connectedDropListIds"
+      [cdkDropListDisabled]="team.locked"
       [id]="'team-' + team.id"
       (cdkDropListDropped)="onDrop($event)"
       class="student-drop-zone"
@@ -20,23 +32,34 @@
           cdkDrag
           class="student-card"
           [class.locked]="student.locked"
+          [cdkDragDisabled]="student.locked"
         >
-          <div class="student-info">
-            <strong>{{ student.name }}</strong> — {{ student.skills.join(', ') }}
-            <div class="student-preference">
-              Project Preference:
-              {{
-                getPreferenceRank(student) !== null
-                  ? (getPreferenceRank(student)! + 1) + getOrdinalSuffix(getPreferenceRank(student)! + 1) + ' choice'
-                  : 'Not ranked'
-              }}
-            </div>
+          <div class="student-header">
+            <strong>{{ student.name }}</strong>
+
+            <mat-slide-toggle
+              [checked]="student.locked"
+              (change)="toggleStudentLock(student)"
+              color="accent"
+              class="student-lock-toggle"
+            >
+              Lock
+            </mat-slide-toggle>
           </div>
 
-          <mat-icon *ngIf="student.locked">lock</mat-icon>
+          <div class="student-meta">
+            {{ student.skills.join(', ') }}<br/>
+            Prefers this project:
+            {{
+              getPreferenceRank(student) !== null
+                ? (getPreferenceRank(student)! + 1) + getOrdinalSuffix(getPreferenceRank(student)! + 1) + ' choice'
+                : 'Not ranked'
+            }}
+          </div>
         </div>
       }
     </div>
+
     <div class="metrics">
       <div class="metric">
         <strong>Skill Match:</strong> {{ skillMatch }}%
@@ -47,6 +70,5 @@
         <mat-progress-bar [value]="preferenceScore" color="accent" mode="determinate"></mat-progress-bar>
       </div>
     </div>
-
   </mat-card-content>
 </mat-card>
