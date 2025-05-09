@@ -7,6 +7,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
 import {Team} from '@models/team.model';
 import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {calculatePreferenceScore, calculateSkillMatch} from '@services/team-utils';
+import {Project} from '@models/project.model';
 
 
 @Component({
@@ -17,8 +19,8 @@ import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@
     MatTooltipModule,
     MatButtonModule,
     MatProgressBarModule,
-  CommonModule,
-  DragDropModule],
+    CommonModule,
+    DragDropModule],
   templateUrl: './team-card.component.html',
   styleUrl: './team-card.component.scss'
 })
@@ -26,6 +28,7 @@ export class TeamCardComponent {
   // Input property to receive the list of teams from the parent component
   @Input() team!: Team;
   @Input() allTeams!: Team[]; // ended up needing to build connected list IDs
+  @Input() project!: Project;
 
   get connectedDropListIds(): string[] {
     return this.allTeams
@@ -33,8 +36,17 @@ export class TeamCardComponent {
       .map(t => `team-${t.id}`);
   }
 
-    // Method to handle the drop event when a student is dragged and dropped
-    onDrop(event: CdkDragDrop<any[]>) {
+  // getter methods, meaning they are automatically re-evaluated anytime this.team or this.project changes. no need to manually call them.
+  get skillMatch(): number {
+    return calculateSkillMatch(this.team, this.project);
+  }
+
+  get preferenceScore(): number {
+    return calculatePreferenceScore(this.team);
+  }
+
+  // Method to handle the drop event when a student is dragged and dropped
+  onDrop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       // If the item is dropped in the same container, move it within the array
       moveItemInArray(this.team.students, event.previousIndex, event.currentIndex);
