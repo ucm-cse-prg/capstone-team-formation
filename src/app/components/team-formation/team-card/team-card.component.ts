@@ -27,6 +27,12 @@ export class TeamCardComponent {
   @Input() team!: Team;
   @Input() allTeams!: Team[]; // ended up needing to build connected list IDs
 
+  get connectedDropListIds(): string[] {
+    return this.allTeams
+      .filter(t => t.id !== this.team.id)
+      .map(t => `team-${t.id}`);
+  }
+
     // Method to handle the drop event when a student is dragged and dropped
     onDrop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
