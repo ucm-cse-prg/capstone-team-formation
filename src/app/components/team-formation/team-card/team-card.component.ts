@@ -6,6 +6,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
 import {Team} from '@models/team.model';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-team-card',
@@ -15,7 +17,8 @@ import {Team} from '@models/team.model';
     MatTooltipModule,
     MatButtonModule,
     MatProgressBarModule,
-  CommonModule],
+  CommonModule,
+  DragDropModule],
   templateUrl: './team-card.component.html',
   styleUrl: './team-card.component.scss'
 })
