@@ -1,5 +1,5 @@
-<div class="team-list">
+<div class="team-list" cdkDropListGroup>
   @for (team of teams; track team.id) {
-    <app-team-card [team]="team" />
+    <app-team-card [team]="team" [allTeams]="teams" />
   }
 </div>
