@@ -69,18 +69,20 @@ export class TeamCardComponent {
 
 
   // Method to handle the drop event when a student is dragged and dropped
-  onDrop(event: CdkDragDrop<any[]>) {
+  onDrop(event: CdkDragDrop<Student[]>) {
+    // Don't allow dropping into a locked team
+    if (this.team.locked) return;
+
+    // Check if the dragged student is locked
+    const draggedStudent = event.previousContainer.data[event.previousIndex];
+
+    // Don't allow moving a locked student
+    if (draggedStudent.locked) return;
+
+    // Check if the drop is within the same team or between different teams
     if (event.previousContainer === event.container) {
-      // If the item is dropped in the same container, move it within the array
       moveItemInArray(this.team.students, event.previousIndex, event.currentIndex);
     } else {
-      // If the item is dropped in a different container, transfer it
-      const draggedStudent = event.previousContainer.data[event.previousIndex];
-
-      // Prevent drop if student is locked
-      if (draggedStudent.locked) return;
-
-      // Check if the student is already in the target team
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -89,6 +91,7 @@ export class TeamCardComponent {
       );
     }
   }
+
 
   // Method to handle the lock event when the team is clicked
   toggleTeamLock(): void {
