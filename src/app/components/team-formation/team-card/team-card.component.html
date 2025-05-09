@@ -10,13 +10,19 @@
     <div
       cdkDropList
       [cdkDropListData]="team.students"
-      class="student-drop-zone"
+      [cdkDropListConnectedTo]="connectedDropListIds"
+      [id]="'team-' + team.id"
       (cdkDropListDropped)="onDrop($event)"
+      class="student-drop-zone"
     >
       @for (student of team.students; track student.id) {
-        <div cdkDrag class="student-card" [class.locked]="student.locked">
+        <div
+          cdkDrag
+          class="student-card"
+          [class.locked]="student.locked"
+        >
           {{ student.name }} — {{ student.skills.join(', ') }}
-          <mat-icon *ngIf="student.locked" aria-label="Locked">lock</mat-icon>
+          <mat-icon *ngIf="student.locked">lock</mat-icon>
         </div>
       }
     </div>
