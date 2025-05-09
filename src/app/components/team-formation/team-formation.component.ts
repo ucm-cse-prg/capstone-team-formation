@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TeamConfigFormComponent} from '@components/team-formation/team-config-form/team-config-form.component';
 import {Team} from '@models/team.model';
 import {TeamListComponent} from '@components/team-formation/team-list/team-list.component';
-import { Student } from '@models/student.model';
 
 @Component({
   selector: 'app-team-formation',
@@ -24,6 +23,13 @@ export class TeamFormationComponent {
 
 
     // MOCK DATA FOR NOW
+    // If Alice is assigned to project 2 -> her preference score = 100%
+    //
+    // If assigned to project 1 -> score = 75%
+    //
+    // If assigned to project 3 -> score = 50%
+    //
+    // If project not in her list -> score = 0%
     this.teams = [
       {
         id: 1,
