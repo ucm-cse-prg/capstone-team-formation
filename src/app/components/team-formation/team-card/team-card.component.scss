@@ -1,10 +1,14 @@
 .student-drop-zone {
   min-height: 120px;
-  padding: 1rem;
+  padding: 0.75rem;
   border: 2px dashed #ccc;
   border-radius: 8px;
   background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
 
 .student-card {
   padding: 0.5rem;
@@ -39,4 +43,8 @@
   font-size: 0.85rem;
   color: #666;
   margin-left: 1rem;
+}
+
+mat-slide-toggle {
+  transform: scale(0.50);
 }
