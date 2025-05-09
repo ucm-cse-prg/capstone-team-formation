@@ -9,6 +9,7 @@ import {Team} from '@models/team.model';
 import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {calculatePreferenceScore, calculateSkillMatch} from '@services/team-utils';
 import {Project} from '@models/project.model';
+import {Student} from '@models/student.model';
 
 
 @Component({
@@ -44,6 +45,19 @@ export class TeamCardComponent {
   get preferenceScore(): number {
     return calculatePreferenceScore(this.team);
   }
+
+  getPreferenceRank(student: Student): number | null {
+    const rank = student.preferences.indexOf(this.project.id);
+    return rank >= 0 ? rank : null;
+  }
+
+  getOrdinalSuffix(n: number): string {
+    if (n === 1) return 'st';
+    if (n === 2) return 'nd';
+    if (n === 3) return 'rd';
+    return 'th';
+  }
+
 
   // Method to handle the drop event when a student is dragged and dropped
   onDrop(event: CdkDragDrop<any[]>) {
