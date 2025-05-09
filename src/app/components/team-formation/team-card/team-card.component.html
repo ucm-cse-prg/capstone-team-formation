@@ -6,10 +6,19 @@
 
   <mat-card-content>
     <p><strong>Students:</strong></p>
-    <ul>
+    <p>Drag and drop students to form teams.</p>
+    <div
+      cdkDropList
+      [cdkDropListData]="team.students"
+      class="student-drop-zone"
+      (cdkDropListDropped)="onDrop($event)"
+    >
       @for (student of team.students; track student.id) {
-        <li>{{ student.name }} - Skills: {{ student.skills.join(', ') }}</li>
+        <div cdkDrag class="student-card" [class.locked]="student.locked">
+          {{ student.name }} — {{ student.skills.join(', ') }}
+          <mat-icon *ngIf="student.locked" aria-label="Locked">lock</mat-icon>
+        </div>
       }
-    </ul>
+    </div>
   </mat-card-content>
 </mat-card>
