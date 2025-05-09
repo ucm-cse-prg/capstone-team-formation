@@ -1,1 +1,5 @@
-<p>team-list works!</p>
+<div class="team-list">
+  @for (team of teams; track team.id) {
+    <app-team-card [team]="team" />
+  }
+</div>
