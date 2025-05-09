@@ -1,18 +1,23 @@
 <mat-card class="teams-card">
 
-  <mat-card-header>
-    <mat-card-title>Team {{ team.id }}</mat-card-title>
-    <mat-card-subtitle>Project ID: {{ team.projectId }}</mat-card-subtitle>
+  <mat-card-header class="team-card-header">
+    <div class="card-header-content">
+      <div>
+        <mat-card-title>Team {{ team.id }}</mat-card-title>
+        <mat-card-subtitle>Project ID: {{ team.projectId }}</mat-card-subtitle>
+      </div>
 
-    <mat-slide-toggle
-      (change)="toggleTeamLock()"
-      [checked]="team.locked"
-      class="team-lock-toggle"
-      color="warn"
-    >
-      Lock Team
-    </mat-slide-toggle>
+      <mat-slide-toggle
+        (change)="toggleTeamLock()"
+        [checked]="team.locked"
+        class="team-lock-toggle"
+        color="warn"
+      >
+        Lock Team
+      </mat-slide-toggle>
+    </div>
   </mat-card-header>
+
 
   <mat-card-content>
     <p><strong>Students:</strong></p>
