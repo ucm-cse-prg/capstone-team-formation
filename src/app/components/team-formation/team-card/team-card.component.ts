@@ -10,6 +10,7 @@ import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@
 import {calculatePreferenceScore, calculateSkillMatch} from '@services/team-utils';
 import {Project} from '@models/project.model';
 import {Student} from '@models/student.model';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @Component({
@@ -21,7 +22,10 @@ import {Student} from '@models/student.model';
     MatButtonModule,
     MatProgressBarModule,
     CommonModule,
-    DragDropModule],
+    DragDropModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatProgressBarModule],
   templateUrl: './team-card.component.html',
   styleUrl: './team-card.component.scss'
 })
@@ -58,6 +62,11 @@ export class TeamCardComponent {
     return 'th';
   }
 
+  // Method to handle the lock event when a student is clicked
+  toggleStudentLock(student: Student): void {
+    student.locked = !student.locked;
+  }
+
 
   // Method to handle the drop event when a student is dragged and dropped
   onDrop(event: CdkDragDrop<any[]>) {
@@ -80,4 +89,10 @@ export class TeamCardComponent {
       );
     }
   }
+
+  // Method to handle the lock event when the team is clicked
+  toggleTeamLock(): void {
+    this.team.locked = !this.team.locked;
+  }
+
 }
