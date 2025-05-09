@@ -15,3 +15,4 @@ export class TeamListComponent {
   // Input property to receive the list of teams from the parent component
   @Input() teams: Team[] = [];
 }
+
