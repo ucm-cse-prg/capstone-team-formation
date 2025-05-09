@@ -1,18 +1,23 @@
 import { Routes } from '@angular/router';
 import { ProductListComponent } from '@components/product-list/product-list.component';
+import {}
 
 export const routes: Routes = [
-    { 
-        path: '', 
-        // redirectTo: 'products', 
+    {
+        path: '',
+        // redirectTo: 'products',
         // pathMatch: 'full',
-        component: ProductListComponent  
+        component: ProductListComponent
     },
     {
         path: 'products',
         loadComponent: () => import('@components/product-list/product-list.component').then(c => c.ProductListComponent)
     },
-    {   path: '**', 
-        redirectTo: 'products' 
+    {
+        path: 'team-formation',
+        loadComponent: () => import('@components/team-formation/team-formation.component').then(c => c.TeamFormationComponent)
+    },
+    {   path: '**',
+        redirectTo: 'products'
     }
 ];
