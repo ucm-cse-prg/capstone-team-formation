@@ -48,3 +48,15 @@
 mat-slide-toggle {
   transform: scale(0.50);
 }
+
+.team-card-header .card-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.team-lock-toggle {
+  transform: scale(0.85);
+  margin-left: auto;
+}
