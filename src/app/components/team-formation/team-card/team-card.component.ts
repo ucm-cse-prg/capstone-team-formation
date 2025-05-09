@@ -6,7 +6,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
 import {Team} from '@models/team.model';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -25,4 +25,26 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 export class TeamCardComponent {
   // Input property to receive the list of teams from the parent component
   @Input() team!: Team;
+
+    // Method to handle the drop event when a student is dragged and dropped
+    onDrop(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
+      // If the item is dropped in the same container, move it within the array
+      moveItemInArray(this.team.students, event.previousIndex, event.currentIndex);
+    } else {
+      // If the item is dropped in a different container, transfer it
+      const draggedStudent = event.previousContainer.data[event.previousIndex];
+
+      // Prevent drop if student is locked
+      if (draggedStudent.locked) return;
+
+      // Check if the student is already in the target team
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 }
